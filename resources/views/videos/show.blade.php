@@ -1,7 +1,7 @@
-<p>{{$title}}</p>
+<p>{{$video->title}}</p>
 <ul>
-    <li>{{ $description }}</li>
-    <li>Data: {{ $published_at }}</li>
+    <li>{{ $video->description }}</li>
+    <li>Data: {{ $video->published_at }}</li>
 </ul>
 
 

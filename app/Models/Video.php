@@ -9,6 +9,7 @@ class Video extends Model
 {
     use HasFactory;
     protected $guarded;
+    protected $dates =['published_at'];
     //protected $fillable =['title','description'];
 
 }
