@@ -23,8 +23,11 @@ class CreateVideosTable extends Migration
             $table->string('next')->nullable();
             $table->unsignedInteger('series_id')->nullable();
             $table->timestamps();
+
         });
+
     }
+
 
     /**
      * Reverse the migrations.

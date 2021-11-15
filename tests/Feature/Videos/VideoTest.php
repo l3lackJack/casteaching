@@ -5,7 +5,6 @@ namespace Tests\Feature\Videos;
 use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class VideoTest extends TestCase
@@ -25,6 +24,8 @@ class VideoTest extends TestCase
             'next'=> null,
             'series_id'=> 1
         ]);
+
+
 
         $response = $this->get('/videos/' .$video->id);
         $response->assertStatus(200);
