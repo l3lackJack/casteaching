@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        create_default_user();
+        create_default_video();
         // \App\Models\User::factory(10)->create();
         //Crear usuari propi pero tambe per a professor
         User::create([
