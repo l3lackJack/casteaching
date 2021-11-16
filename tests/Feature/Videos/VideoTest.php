@@ -7,11 +7,16 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @covers \App\Http\Controllers\VideosController
+ */
+
 class VideoTest extends TestCase
 {
     use RefreshDatabase;
     /**
      * @test
+     * @covers \App\Http\Controllers\VideosController::show
      */
     public function users_canv_view_videos()
     {
@@ -32,5 +37,14 @@ class VideoTest extends TestCase
         $response->assertSee('Ubuntu 101');
         $response->assertSee('Here Description');
         $response->assertSee('2021-12-13 00:00:00');
+    }
+
+    /**
+     * @test
+     */
+    public function users_canv_not_view_not_existing_videos()
+    {
+        $response = $this->get('/videos/999');
+        $response->assertStatus(404);
     }
 }
