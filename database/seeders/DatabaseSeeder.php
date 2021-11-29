@@ -27,11 +27,7 @@ class DatabaseSeeder extends Seeder
             'password'=> Hash::make((config('casteaching.user_default.password')))
         ]);
 
-        User::create([
-            'name'=> env('DEFAULT_USER_NAME','casteaching'),
-            'email'=> env('DEFAULT_USER_EMAIL','casteaching@gmail.com'),
-            'password'=> env('DEFAULT_USER_PASSWORD',12345678)
-        ]);
+
 
         Video::create([
             'title'=> 'Ubuntu 101',
