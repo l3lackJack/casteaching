@@ -21,22 +21,6 @@ class DatabaseSeeder extends Seeder
         create_default_video();
         // \App\Models\User::factory(10)->create();
         //Crear usuari propi pero tambe per a professor
-        User::create([
-            'name' => 'Gabriel',
-            'email'=>'gabrielurs@gmail.com',
-            'password'=> Hash::make((config('casteaching.user_default.password')))
-        ]);
 
-
-
-        Video::create([
-            'title'=> 'Ubuntu 101',
-            'description'=> '# Here Description',
-            'url' => 'https://youtu.be/w8j07_DBl_I',
-            'published_at'=> Carbon::parse('December 13'),
-            'previous'=> null,
-            'next'=> null,
-            'series_id'=> 1
-        ]);
     }
 }
