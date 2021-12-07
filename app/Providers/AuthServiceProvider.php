@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Models\Team;
 use App\Policies\TeamPolicy;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        define_gates();
 
-        //
     }
 }
