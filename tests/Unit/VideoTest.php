@@ -13,23 +13,46 @@ class VideoTest extends TestCase
     /**
      * @test
      */
-    public function can_get_formatted_date()
+    public function can_get_formatted_published_at_date()
     {
-        //Preparacio
-        //TODO CODE SMELL
+        // 1 Preparació
+        // TODO CODE SMELL
         $video = Video::create([
-            'title'=> 'Ubuntu 101',
-            'description'=> '# Here Description',
+            'title' => 'Ubuntu 101',
+            'description' => '# Here description',
             'url' => 'https://youtu.be/w8j07_DBl_I',
-            'published_at'=> Carbon::parse('December 13'),
-            'previous'=> null,
-            'next'=> null,
-            'series_id'=> 1
+            'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
+            'previous' => null,
+            'next' => null,
+            'series_id' => 1
         ]);
-        //Execucio WISHFULL PROGRAMMING
-        $dateToTest = $video->formatted_pusblished_at;
 
-        //Comprovacio/assert
-        $this->assertEquals($dateToTest, 'December 13');
+        // 2 Execució WISHFUL PROGRAMMING
+        $dateToTest = $video->formatted_published_at;
+
+        // 3 comprovació / assert
+        $this->assertEquals($dateToTest, '13 de desembre de 2020');
+    }
+
+    /** @test */
+    public function can_get_formatted_published_at_date_when_not_published()
+    {
+        // 1 Preparació
+        // TODO CODE SMELL
+        $video = Video::create([
+            'title' => 'Ubuntu 101',
+            'description' => '# Here description',
+            'url' => 'https://youtu.be/w8j07_DBl_I',
+            'published_at' => null,
+            'previous' => null,
+            'next' => null,
+            'series_id' => 1
+        ]);
+
+        // 2 Execució WISHFUL PROGRAMMING
+        $dateToTest = $video->formatted_published_at;
+
+        // 3 comprovació / assert
+        $this->assertEquals($dateToTest, '');
     }
 }
