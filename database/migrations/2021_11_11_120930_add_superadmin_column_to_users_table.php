@@ -17,8 +17,6 @@ class AddSuperAdminColumnToUsersTable extends Migration
             $table->boolean('superadmin')
                     ->after('remember_token')
                     ->nullable();
-
-
         });
     }
 

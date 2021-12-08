@@ -1,15 +1,18 @@
 <?php
 
-namespace {{ namespace }};
+namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class {{ class }} extends TestCase
+class LandingPageTest extends TestCase
 {
-    /** @test */
-    public function example()
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function test_example()
     {
         $response = $this->get('/');
 

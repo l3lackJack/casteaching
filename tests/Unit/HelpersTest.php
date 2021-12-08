@@ -10,20 +10,22 @@ use Tests\TestCase;
 class HelpersTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
-     *
      * @test
      */
     public function create_default_user()
     {
         create_default_user();
-        $this->assertDatabaseCount('users',1);
-        $this->assertDatabaseHas('users',[
-            'email'=> config('casteaching.default_user.email'),
+
+        $this->assertDatabaseCount('users', 1);
+
+        $this->assertDatabaseHas('users', [
+            'email' => config('casteaching.default_user.email'),
         ]);
 
-        $this->assertDatabaseHas('users',[
-            'name'=> config('casteaching.default_user.name'),
+        $this->assertDatabaseHas('users', [
+            'name' => config('casteaching.default_user.name'),
         ]);
 
         $user = User::find(1);
@@ -36,12 +38,12 @@ class HelpersTest extends TestCase
     }
 
     /**
-     *
      * @test
      */
-    public function create_default_video()
+    public function create_default_videos()
     {
         create_default_videos();
-        $this->assertDatabaseCount('videos',1);
+
+        $this->assertDatabaseCount('videos', 1);
     }
 }

@@ -1,67 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+![image](https://user-images.githubusercontent.com/4015406/139868670-5d6179cd-6ddd-4c2e-836d-afbc4bfac424.png)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# Notes markdown
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Més info a: https://github.com/acacha/wiki/blob/main/casteaching.md
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Screencasts/Video tutorials a Youtube
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+https://tubeme.acacha.org/tdd
 
-## Learning Laravel
+# Autor
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Sergi Tur Badenas: https://acacha.github.io
+- Instagram: https://instagram.com/acacha_dev
+- Github: https://github.com/acacha
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![image](https://user-images.githubusercontent.com/4015406/140644527-e186bf90-e556-4970-98ed-3f00c5f1af11.png)
 
-## Laravel Sponsors
+# 109 Feature UI -> Vista mostrar video
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+STARTING FROM SCRATCH
+- Start with a feature not a layout -> Focusing on the value -> Evitar procastrinació
+  - No cal pensar el layout de tota l'aplicació, el shell sinó la nostra feature 
 
-### Premium Partners
+FEATURE
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+**Jerarquia**
 
-## Contributing
+Dades principals
+- Title del vídeo
+- Description -> Pensar podrà ser markdown
+- URL -> URL del vídeo per incrustar el vídeo -> de moment YOUTUBE
+Dades secundàries
+- Data de publicació, 
+- Data de creació, data última modificació -> només per backend?, li cal a l'usuari final?
+- Navegació -> next, previous
+- Series -> TODO
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Details come later
+- Hold the color -> grayscale -> Force to use spacing,contrast and size 
+- Don't design to much
+- Work in cycles
+- Be a pessimist -> si no tenim clar si una funcionalitat la implementarem la trèiem
+- Choose a personality -> Tailwind CSS: https://tailwindcss.com/
+  - Simple -> ESCOLLO ESTA
+  - Playful
+  - Elegant
+  - Brutalist
+- Escollir una font -> utilitzem -> Tailwind UI  Tipus de font a mida amb l'estil
+- Colors primaris -> Blue is safe an familiar -> Pink més playful -> Golds poden ser més elegants
+- Borders/cantonades -> Molt marcades indiquen més playfull, cap indica seriositat, simple -> poc border radius
+- LIMIT YOU CHOICES -> Això ja ho fa Tailwind CSS
+  - Mides de text
+  - Mides borders, paddings, spacings, etc
 
-## Code of Conduct
+### Jerarquia
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+De totes les dades d'un vídeo quina és la més IMPORTANT?
+- LA URL -> El vídeo en si -> el posem davant de tot
+- Títol -> segon en importància
+- Descripció: tercer
 
-## Security Vulnerabilities
+La mida no ho és tot
+- Primary and Secondary content
+  - Tipografia: font-weight
+  - Softer colors -> escala de grisos
+  - Limitar el nombre colors i el nombre de font weights
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+**VIDEO**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# casteaching
+IFRAME DE YOUTUBE
+
+**TITLE**
+
+- Background color -> Evitar blanc
+- Plugin de Tailwind instal·lat a PHPStorm
+- space-y 6 per evitar tants paddings
+
+Tipografia i Jerarquia:
+- Tipus de font: Tailwind UI -> 
+- Inter Font Family: https://tailwindui.com/documentation#optional-add-the-inter-font-family
+- Responsive Design de la lletra? Sí podem aprofitar quan tenim més espai per fer les fonts més grans
+- Color de lletres. Evitar el negre pur.
+- Line-height and font size are inversely proportional: Line-heigh 1 per a titols
+- Tenir en compte els pitjors casos sobretot amb dades que venen de base de dades -> Overflow, titol llarg com queda, límit màxim a base de dades
+- Letter spacing: 
+
+CARD per ressaltar-ho
+- Title a Card heading
+- Altres pocions secundaries dins la card
+
+Navegació:
+- Button groups
+
+
+Dividers?
+
+**DESCRIPTION**
+
+- Controlar la mida màxima de la font i utilitzat diseny responsive Tiny Teaks -> Petits canvis a mesura que disposem de més espai
+- Text gray
+
+
+# RESPONSIVE DESIGN
+- Lorem isum text llar a descriptión. Un title més realista
+- Centrar contingut? mx-auto
+
+
+# CRUD
+
+- No ha de ser public -> guest_users no han de tenir accés
+- Logged Users? Tampoc han de tenir accés -> només administradors
+- Authorization -> Permisos per administadors de videos
+- Superadministradors -> root -> Independentment dels permisos puguin realitzar qualsevol acció
+- URL SHOW -> /videos/1
+- URL -> /manage/videos
+- Controlador Model Vista: 
+- Controlador: VideosManageController
+- Model -> Video.php
+- Vista: videos.manage.index
+- Test: VideosManageControllerTest
+
+CRUD -> Controladors Resource Controllers
+
+# Detalls a polir UI
+
+- Marge del formulari de creació card en mobile -> Eliminar div extra amb un p-4 de padding
+- bg-white a tot el formulari
+- Zebra: Even row amb Laravel
+- type="text" per evitar error no surt focus indigo correcte
+- Menu de navegació en medium
