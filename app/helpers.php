@@ -142,7 +142,7 @@ if (! function_exists('create_sample_videos')) {
             'description' => 'Bla bla bla',
             'url' => 'https://youtu.be/--ZfoRC2JBw'
         ]);
-
+    //
         return [$video1, $video2, $video3];
     }
 }
