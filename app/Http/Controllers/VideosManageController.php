@@ -29,7 +29,14 @@ class VideosManageController extends Controller
     /** C -> Create -> Guardara a base de dades el nou Video */
     public function store(Request $request)
     {
-        //
+        Video::create([
+            'title'=> $request->title,
+            'description'=> $request->description,
+            'url'=> $request->url,
+        ]);
+        session()->flash('status', 'Successfully created');
+        return redirect()->route('manage.videos');
+//        return response()->view('videos.manage.index',['videos'=> []], 201);
     }
 
     /** R-> NO LLISTA -> Individual ->

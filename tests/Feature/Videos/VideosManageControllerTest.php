@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Tests\TestCase;
+use function PHPUnit\Framework\assertNotEquals;
 
 /**
  * @covers \App\Http\Controllers\VideosManageController
@@ -17,6 +18,34 @@ use Tests\TestCase;
 class VideosManageControllerTest extends TestCase
 {
     use RefreshDatabase;
+
+    /** @test */
+    public function user_with_permissions_can_store_videos(){
+        $this->loginAsVideoManager();
+        $video = objectify([
+            'title'=> 'HTTP for noobs',
+            'description'=> 'Te ensenyo tot sobre HTTP',
+            'url'=> 'https://tubeme.acacha.org/http',
+        ]);
+        $response = $this->post('/manage/videos',[
+            'title'=> 'HTTP for noobs',
+            'description'=> 'Te ensenyo tot sobre HTTP',
+            'url'=> 'https://tubeme.acacha.org/http',
+        ]);
+//        $response->assertStatus(201);
+        $response->assertRedirect(route('manage.videos'));
+        $response->assertSessionHas('status','Successfully created');
+
+
+        $videoDB = Video::first();
+//        $this->assertNotEquals(null,$video);
+        $this->assertNotNull($videoDB);
+        $this->assertEquals($videoDB->title,$video->title);
+        $this->assertEquals($videoDB->description,$video->description);
+        $this->assertEquals($videoDB->url,$video->url);
+
+
+    }
 
     /** @test */
     public function user_with_permissions_can_see_add_videos()
