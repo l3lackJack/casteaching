@@ -1,4 +1,4 @@
 Sudo Password:
-5TF9fM6RfXh84IfmEHry
+mTSBAG2EZm7Macsyyay2
 Database Password:
-geV6UWQPCE2495Dr5APG
+OvwaTeeesPneKdbK9nAo

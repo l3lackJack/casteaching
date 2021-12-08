@@ -22,10 +22,12 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
     use HasRoles;
 
+
     public static function testedBy()
     {
         return UserTest::class;
     }
+
     /**
      * The attributes that are mass assignable.
      *

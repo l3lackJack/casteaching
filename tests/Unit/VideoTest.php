@@ -7,12 +7,14 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @covers Video::class
+ */
 class VideoTest extends TestCase
 {
     use RefreshDatabase;
-    /**
-     * @test
-     */
+
+    /** @test */
     public function can_get_formatted_published_at_date()
     {
         // 1 Preparació

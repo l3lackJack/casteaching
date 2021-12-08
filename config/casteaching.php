@@ -1,9 +1,10 @@
 <?php
 
-return[
-    'default_user'=>[
-        'name'=> env('DEFAULT_USER_NAME','casteaching'),
-        'email'=> env('DEFAULT_USER_EMAIL','casteaching@gmail.com'),
-        'password'=> env('DEFAULT_USER_PASSWORD','12345678')
-]
+
+return [
+    'default_user' => [
+        'name' => env('DEFAULT_USER_NAME','Sergi Tur Badenas'),
+        'email' => env('DEFAULT_USER_EMAIL','sergiturbadenas@gmail.com'),
+        'password' => env('DEFAULT_USER_PASSWORD','12345678'),
+    ]
 ];
