@@ -1,6 +1,6 @@
 <x-casteaching-layout>
 
-    <div class="flex flex-col mt-10">
+    <div class="flex flex-wrap mt-10">
 
         @if(session()->has('status'))
             <div class="rounded-md bg-green-50 p-4">
@@ -13,7 +13,7 @@
                     </div>
                     <div class="ml-3">
                         <p class="text-sm font-medium text-green-800">
-                            Successfully created
+                            {{ session('status') }}
                         </p>
                     </div>
                     <div class="ml-auto pl-3">
@@ -154,7 +154,14 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="/videos/{{$video->id}}" target="_blank" class="text-indigo-600 hover:text-indigo-900">Show</a>
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Delete</a>
+                                    <form class="inline" action="/manage/videos/{{$video->id}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <a href="/videos/{{$video->id}}" class="text-indigo-600 hover:text-indigo-900"
+                                           onclick="event.preventDefault();
+                                        this.closest('form').submit();">Delete</a>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -164,5 +171,4 @@
             </div>
         </div>
     </div>
-
 </x-casteaching-layout>
