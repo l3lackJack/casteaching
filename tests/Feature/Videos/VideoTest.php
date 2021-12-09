@@ -13,7 +13,7 @@ use Tests\TestCase;
  */
 class VideoTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase;        // ESTAT PRECONEGUT -> ZERO STATE
 
     /**
      * @test
@@ -21,13 +21,13 @@ class VideoTest extends TestCase
     public function users_can_view_videos()
     {
         $video = Video::create([
-                'title' => 'Ubuntu 101',
-                'description' => '# Here description',
-                'url' => 'https://youtu.be/w8j07_DBl_I',
-                'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
-                'previous' => null,
-                'next' => null,
-                'series_id' => 1
+            'title' => 'Ubuntu 101',
+            'description' => '# Here description',
+            'url' => 'https://youtu.be/w8j07_DBl_I',
+            'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
+            'previous' => null,
+            'next' => null,
+            'series_id' => 1
         ]);
 
         $response = $this->get('/videos/' . $video->id); // SLUGS -> SEO -> TODO

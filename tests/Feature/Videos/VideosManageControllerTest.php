@@ -245,5 +245,4 @@ class VideosManageControllerTest extends TestCase
     {
         Auth::login(create_regular_user());
     }
-    //
 }
