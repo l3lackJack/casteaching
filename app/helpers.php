@@ -179,7 +179,7 @@ if (! function_exists('create_sample_videos')) {
             'description' => 'Bla bla bla',
             'url' => 'https://youtu.be/--ZfoRC2JBw'
         ]);
-    //
+
         return [$video1, $video2, $video3];
     }
 }
@@ -263,7 +263,6 @@ class DomainObject implements ArrayAccess, JsonSerializable
      * which is a value of any type other than a resource.
      * @since 5.4.0
      */
-    //
     public function jsonSerialize()
     {
         return $this->data;
