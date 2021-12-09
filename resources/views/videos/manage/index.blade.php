@@ -115,6 +115,7 @@
                             <tbody>
                             <!-- Odd row -->
                             @foreach($videos as $video)
+<<<<<<< HEAD
                                 <tr class="bg-white">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {{ $video->id }}
@@ -160,6 +161,39 @@
                             {{--                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>--}}
                             {{--                            </td>--}}
                             {{--                        </tr>--}}
+=======
+                                @if($loop->odd)
+                                    <tr class="bg-white">
+                                @else
+                                    <tr class="bg-gray-50">
+                                        @endif
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            {{ $video->id }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ $video->title }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ $video->description }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ $video->url }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <a href="/videos/{{$video->id}}" target="_blank" class="text-indigo-600 hover:text-indigo-900">Show</a>
+                                            <a href="/manage/videos/{{$video->id}}" target="_blank" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <form class="inline" action="/manage/videos/{{$video->id}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <a href="/videos/{{$video->id}}" class="text-indigo-600 hover:text-indigo-900"
+                                                   onclick="event.preventDefault();
+                                        this.closest('form').submit();">Delete</a>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+>>>>>>> main
                             </tbody>
                         </table>
                     </div>
