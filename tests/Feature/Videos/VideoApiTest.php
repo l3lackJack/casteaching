@@ -14,6 +14,89 @@ use Tests\TestCase;
 class VideoApiTest extends TestCase
 {
     use RefreshDatabase;
+
+    //EDIT
+    /** @test */
+    public function users_with_permission_can_update_videos()
+    {
+        $this->loginAsVideoManager();
+
+        $video  = Video::create([
+            'title' => 'TDD 101',
+            'description' => 'Bla bla bla',
+            'url' => 'https://youtu.be/ednlsVl-NHA'
+        ]);
+
+        $response = $this->putJson('/api/videos/' . $video->id, $newVideo = [
+            'title' => 'TDD 101 new',
+            'description' => 'Bla bla bla new',
+            'url' => 'https://youtu.be/ednlsVl-NHA/new'
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson(fn (AssertableJson $json) =>
+            $json->has('id')
+                ->where('title', $newVideo['title'])
+                ->where('description', $newVideo['description'])
+                ->where('url', $newVideo['url'])
+                ->etc()
+            );
+
+        $this->assertNotNull($dbVideo = Video::find($response['id']));
+        $this->assertEquals($video->id,$dbVideo->id);
+        $this->assertEquals($newVideo['title'],$dbVideo->title);
+        $this->assertEquals($newVideo['description'],$dbVideo->description);
+        $this->assertEquals($newVideo['url'],$dbVideo->url);
+
+    }
+    /** @test */
+    public function regular_users_cannot_update_videos()
+    {
+        $this->loginAsRegularUser();
+        $video = Video::create([
+            'title' => 'TDD 101',
+            'description' => 'Bla bla bla',
+            'url' => 'https://youtu.be/ednlsVl-NHA'
+        ]);
+        $response = $this->putJson('/api/videos/' . $video->id);
+        $response
+            ->assertStatus(403);
+
+        $newVideo = Video::find($video->id);
+        $this->assertEquals($newVideo->id,$video->id);
+        $this->assertEquals($newVideo->title,$video->title);
+        $this->assertEquals($newVideo->description,$video->description);
+        $this->assertEquals($newVideo->url,$video->url);
+    }
+
+    /** @test */
+    public function guest_users_cannot_update_videos()
+    {
+        $video = Video::create([
+            'title' => 'TDD 101',
+            'description' => 'Bla bla bla',
+            'url' => 'https://youtu.be/ednlsVl-NHA'
+        ]);
+        $response = $this->putJson('/api/videos/' . $video->id);
+        $response
+            ->assertStatus(401);
+        $this->assertNotNull(Video::find($video->id));
+
+    }
+
+    /** @test */
+    public function returns_404_when_updating_and_unexisting_video()
+    {
+        $this->loginAsVideoManager();
+
+        $response = $this->putJson('/api/videos/999');
+        $response
+            ->assertStatus(404);
+
+    }
+
+
     //DESTROY
     /** @test */
     public function regular_users_cannot_destroy_videos()
