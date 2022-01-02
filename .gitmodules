@@ -1,0 +1,3 @@
+[submodule "casteaching_package"]
+	path = casteaching_package
+	url = git@github.com:l3lackJack/casteaching_package.git
