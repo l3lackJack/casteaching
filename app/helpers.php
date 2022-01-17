@@ -162,6 +162,18 @@ if (! function_exists('create_permissions')) {
     }
 }
 
+
+if (! function_exists('create_sample_videos')) {
+    function create_sample_video()
+    {
+        return  Video::create([
+            'title' => 'Vídeo 1',
+            'description' => 'Bla bla bla',
+            'url' => 'https://youtu.be/a-3kfT9hZk4'
+        ]);
+    }
+}
+
 if (! function_exists('create_sample_videos')) {
     function create_sample_videos() {
         $video1 = Video::create([
