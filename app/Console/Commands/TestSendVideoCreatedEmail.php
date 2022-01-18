@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Notifications\VideoCreated;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Notification;
 
 class TestSendVideoCreatedEmail extends Command
 {
@@ -38,6 +39,6 @@ class TestSendVideoCreatedEmail extends Command
      */
     public function handle()
     {
-        Notification::route('mail','sergiturbadenas@gmail.com')->notify(new VideoCreated(create_sample_video()));
+        Notification::route('mail', 'sergiturbadenas@gmail.com')->notify(new VideoCreated(create_sample_video()));
     }
 }
