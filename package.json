@@ -10,6 +10,7 @@
         "production": "mix --production"
     },
     "dependencies": {
+        "@vue/cli-service": "^4.5.15",
         "casteaching": "file:./casteaching_package",
         "vue": "^2.6.14"
     },
