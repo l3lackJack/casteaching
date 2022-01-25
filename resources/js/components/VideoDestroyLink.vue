@@ -17,7 +17,7 @@ export default {
     methods: {
         async remove() {
             try {
-                await window.casteaching.video.destroy(this.video.id)
+                await window.api.video.destroy(this.video.id)
                 this.$emit('removed');
                 bus.$emit('status','Video removed succesfully');
             }catch (error){
