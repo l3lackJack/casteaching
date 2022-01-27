@@ -1,0 +1,109 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+
+/**
+ * @covers \App\Http\Controllers\SanctumTokenController
+ */
+
+class SanctumTokenControllerTest extends TestCase
+{
+    use RefreshDatabase;
+    /** @test */
+    public function email_is_required_for_issuing_tokens()
+    {
+
+        //Exec
+        $response = $this->postJson('/api/sanctum/token',[
+            'password'=> '1234578',
+            'device_name'=> "Pepe's device",
+        ]);
+
+        $response->assertStatus(422);
+        $jsonResponse = json_decode($response->getContent());
+
+        $this->assertEquals("The given data was invalid.", $jsonResponse->message);
+        $this->assertEquals("The email field is required.", $jsonResponse->errors->email[0]);
+
+    }
+
+    /** @test */
+    public function invalid_email_gives_incorrect_credentials_error()
+    {
+        //Prep
+        $user = User::create([
+            'name'=> 'Pepe Pardo Jeans',
+            'email'=> 'pepe@pardojeans',
+            'password'=> '12345678'
+        ]);
+
+        $response = $this->postJson('/api/sanctum/token',[
+            'email' => 'another_email',
+            'password'=> $user->password,
+            'device_name'=> $user->name . "'s device",
+        ]);
+
+        $response->assertStatus(422);
+        $jsonResponse = json_decode($response->getContent());
+        $this->assertEquals("The given data was invalid.", $jsonResponse->message);
+        $this->assertEquals("The provided credential are incorrect", $jsonResponse->errors->email[0]);
+
+    }
+
+
+    /** @test */
+    public function users_with_valid_credentials_can_issue_a_token()
+    {
+        //Prep
+        $user = User::create([
+            'name'=> 'Pepe Pardo Jeans',
+            'email'=> 'pepe@pardojeans',
+            'password'=> '12345678'
+        ]);
+
+        $this->assertCount(0,$user->tokens);
+        //Exec
+        $response = $this->postJson('/api/sanctum/token',[
+            'email' => $user->email,
+            'password'=> $user->password,
+            'device_name'=> $user->name . "'s device",
+        ]);
+
+        //Comprov
+
+        $response->assertStatus(200);
+        $this->assertNotNull($response->getContent());
+        $this->assertCount(1,$user->fresh()->tokens);
+    }
+
+
+//    public function email_is_vaid_for_issuing_tokens()
+//    {
+//
+//    }
+//
+//    public function password_is_required_for_issuing_tokens()
+//    {
+//
+//    }
+//
+//    public static function device_name_is_required_for_issuing_tokens()
+//    {
+//
+//    }
+//
+//    public static function invalid_email_gives_incorrect_credentials_error()
+//    {
+//
+//    }
+//
+//    public static function invalid_password_gives_incorrect_credential_error()
+//    {
+//
+//    }
+}
