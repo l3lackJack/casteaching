@@ -153,28 +153,4 @@ class SanctumTokenControllerTest extends TestCase
     }
 
 
-//    public function email_is_vaid_for_issuing_tokens()
-//    {
-//
-//    }
-//
-//    public function password_is_required_for_issuing_tokens()
-//    {
-//
-//    }
-//
-//    public static function device_name_is_required_for_issuing_tokens()
-//    {
-//
-//    }
-//
-//    public static function invalid_email_gives_incorrect_credentials_error()
-//    {
-//
-//    }
-//
-//    public static function invalid_password_gives_incorrect_credential_error()
-//    {
-//
-//    }
 }
