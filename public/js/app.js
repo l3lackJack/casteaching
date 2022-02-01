@@ -8227,7 +8227,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
-window.casteaching = _acacha_casteaching__WEBPACK_IMPORTED_MODULE_2__["default"];
+window.casteaching = (0,_acacha_casteaching__WEBPACK_IMPORTED_MODULE_2__["default"])({
+  baseUrl: "/api"
+});
 window.Vue = vue__WEBPACK_IMPORTED_MODULE_5__["default"];
 window.Vue.component('videos-list', _components_VideosList__WEBPACK_IMPORTED_MODULE_0__["default"]);
 window.Vue.component('video-form', _components_VideoForm__WEBPACK_IMPORTED_MODULE_3__["default"]);
