@@ -25,7 +25,7 @@ class VideoTest extends TestCase
             'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
             'previous' => null,
             'next' => null,
-            'series_id' => 1
+            'serie_id' => 1
         ]);
 
         $dateToTest = $video->formatted_published_at;
@@ -42,7 +42,7 @@ class VideoTest extends TestCase
             'published_at' => null,
             'previous' => null,
             'next' => null,
-            'series_id' => 1
+            'serie_id' => 1
         ]);
 
         $dateToTest = $video->formatted_published_at;
@@ -62,7 +62,7 @@ class VideoTest extends TestCase
         ]);
         $this->assertNull($video->serie);
 
-        $video = Serie::create([
+        $serie = Serie::create([
             'title'=>'Apren TDD',
             'description'=>'Bla bla bla',
             'image'=>'tdd.png',
