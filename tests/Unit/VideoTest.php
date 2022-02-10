@@ -70,8 +70,8 @@ class VideoTest extends TestCase
             'teacher_photo_url'=>'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
             ]);
 
-        $video->serie_id = 1;
-        $video->save();
+        $video->setSerie($serie);
+
 
         $this->assertNotNull($video->fresh()->serie);
 
