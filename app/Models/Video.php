@@ -37,4 +37,9 @@ class Video extends Model
     {
         return optional($this->published_at)->timestamp;
     }
+
+    public function serie()
+    {
+        return $this->belongsTo(Serie::class);
+    }
 }
