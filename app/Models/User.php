@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Tests\Unit\UserTest;
 
 class User extends Authenticatable
 {
@@ -70,5 +71,18 @@ class User extends Authenticatable
     public function isSuperAdmin()
     {
         return boolval($this->superadmin);
+    }
+
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
+
+    public function addVideo(Video $video)
+    {
+        $video->user_id = $this->id;
+        $video->save();
+        return $this;
     }
 }
