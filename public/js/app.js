@@ -7807,7 +7807,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return window.casteaching.video.destroy(_this.video.id);
+                return window.api.video.destroy(_this.video.id);
 
               case 3:
                 _this.$emit('removed');
@@ -7972,7 +7972,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     store: function store() {
       try {
-        window.casteaching.video.create({
+        window.api.video.create({
           title: this.video.title,
           description: this.video.description,
           url: this.video.url
@@ -7985,7 +7985,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     update: function update() {
       try {
-        window.casteaching.video.update(this.video.id, {
+        window.api.video.update(this.video.id, {
           title: this.video.title,
           description: this.video.description,
           url: this.video.url
@@ -8167,7 +8167,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return window.casteaching.videos();
+                return window.api.videos();
 
               case 2:
                 _this2.videos = _context2.sent;
@@ -8227,17 +8227,19 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
-window.casteaching = (0,_acacha_casteaching__WEBPACK_IMPORTED_MODULE_2__["default"])({
-  baseUrl: "/api"
-});
-window.Vue = vue__WEBPACK_IMPORTED_MODULE_5__["default"];
-window.Vue.component('videos-list', _components_VideosList__WEBPACK_IMPORTED_MODULE_0__["default"]);
-window.Vue.component('video-form', _components_VideoForm__WEBPACK_IMPORTED_MODULE_3__["default"]);
-window.Vue.component('status', _components_Status__WEBPACK_IMPORTED_MODULE_4__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start();
-var app = new window.Vue({
-  el: '#app'
-});
+window.casteaching = (0,_acacha_casteaching__WEBPACK_IMPORTED_MODULE_2__["default"])();
+var vueApp = document.querySelector('#app');
+
+if (vueApp) {
+  window.Vue = vue__WEBPACK_IMPORTED_MODULE_5__["default"];
+  window.Vue.component('videos-list', _components_VideosList__WEBPACK_IMPORTED_MODULE_0__["default"]);
+  window.Vue.component('video-form', _components_VideoForm__WEBPACK_IMPORTED_MODULE_3__["default"]);
+  window.Vue.component('status', _components_Status__WEBPACK_IMPORTED_MODULE_4__["default"]);
+  var app = new window.Vue({
+    el: '#app'
+  });
+}
 
 /***/ }),
 

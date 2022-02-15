@@ -4,8 +4,14 @@ use App\Http\Controllers\UsersManageController;
 use App\Http\Controllers\VideosController;
 use App\Http\Controllers\VideosManageController;
 use App\Http\Controllers\VideosManageVueController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use GitHub\Sponsors\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +24,9 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\LandingPageController::class,'show']);
+Route::get('/', [ \App\Http\Controllers\LandingPageController::class,'show']);
 
 Route::get('/videos/{id}', [ VideosController::class,'show']);
-
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -45,7 +50,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('/manage/users/{id}',[ UsersManageController::class,'destroy' ])->middleware(['can:users_manage_destroy']);
 
 
-    //VUE
     Route::get('/vue/manage/videos', [ VideosManageVueController::class,'index'])->middleware(['can:videos_manage_index'])
         ->name('manage.vue.videos');
 
@@ -55,15 +59,65 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::put('/vue/manage/videos/{id}',[ VideosManageVueController::class,'update' ])->middleware(['can:videos_manage_update']);
 });
 
+Route::get('/github_sponsors', function () {
+    $client = app(Client::class);
+    dump($sponsors = $client->login('acacha')->sponsors());
+    foreach ($sponsors as $sponsor) {
+        dump($sponsor['avatarUrl']); // The sponsor's GitHub avatar url...
+        dump($sponsor['name']); // The sponsor's GitHub name...
+    }
+
+    dump($sponsors = $client->login('driesvints')->sponsors());
+    foreach ($sponsors as $sponsor) {
+        dump($sponsor);
+    }
+
+    dd($client->login('acacha')->isSponsoredBy('acacha'));
+});
+
+
 Route::get('/auth/redirect', function () {
     return Socialite::driver('github')->redirect();
 });
 
 Route::get('/auth/callback', function () {
-    dd(1);
-    $user = Socialite::driver('github')->user();
-    dd($user->token);
+    try {
+        $githubUser = Socialite::driver('github')->user();
+    } catch (\Exception $error) {
+        Log::debug($error);
+        return redirect('/login')->withErrors(['msg' => 'An Error occurred!' . $error->getMessage()]);
+    }
 
+    $user = User::where('github_id', $githubUser->id)->first();
+
+    if ($user) {
+        $user->github_token = $githubUser->token;
+        $user->github_refresh_token = $githubUser->refreshToken;
+        $user->github_nickname = $githubUser->nickname;
+        $user->github_avatar = $githubUser->avatar;
+        $user->save();
+    } else {
+        $user = User::where('email', $githubUser->email)->first();
+        if ($user) {
+            $user->github_id = $githubUser->id;
+            $user->github_nickname = $githubUser->nickname;
+            $user->github_avatar = $githubUser->avatar;
+            $user->github_token = $githubUser->token;
+            $user->github_refresh_token = $githubUser->refreshToken;
+            $user->save();
+        } else {
+            $user = User::create([
+                'name' => $githubUser->name,
+                'email' => $githubUser->email,
+                'password' => Hash::make(Str::random()),
+                'github_id' => $githubUser->id,
+                'github_token' => $githubUser->token,
+                'github_refresh_token' => $githubUser->refreshToken,
+            ]);
+        }
+    }
+
+    Auth::login($user);
+
+    return redirect('/dashboard');
 });
-
-
