@@ -49,7 +49,7 @@ class CasteachingSeriesTest extends TestCase
         ]);
 
         // 2 Execució
-        $view = $this->blade('<x-casteaching-series/>');
+        $view = $this->blade('<x-casteaching-Series/>');
 
         // 3 Comprovació
 

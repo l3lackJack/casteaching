@@ -4,9 +4,11 @@ namespace Tests\Unit;
 
 use App\Models\Serie;
 use App\Models\Video;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @covers Video::class
@@ -70,10 +72,31 @@ class VideoTest extends TestCase
             'teacher_photo_url'=>'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
             ]);
 
-        $video->serie_id = 1;
-        $video->save();
+        $video->setSerie($serie);
+
 
         $this->assertNotNull($video->fresh()->serie);
 
+    }
+
+    /** @test */
+    public function video_can_have_owners()
+    {
+        $user = User::create([
+            'name' => 'Pepe Pardo Jeans',
+            'email' => 'pepepardo@casteaching.com',
+            'password' => Hash::make('12345678')
+        ]);
+
+        $video  = Video::create([
+            'title' => 'TDD 101',
+            'description' => 'Bla bla bla',
+            'url' => 'https://youtu.be/ednlsVl-NHA'
+        ]);
+
+        $this->assertNull($video->owner);
+        $video->setOwner($user);
+        $this->assertNotNull($video->fresh()->user);
+        $this->assertEquals($video->user->id,$user->id);
     }
 }
