@@ -26,8 +26,7 @@ class SanctumTokenControllerTest extends TestCase
         $response->assertStatus(422);
         $jsonResponse = json_decode($response->getContent());
         $this->assertEquals("The given data was invalid.",$jsonResponse->message);
-        $this->assertEquals("The email field is required.",$jsonResponse->errors->email[0]);
-
+        $this->assertEquals("The email must be a valid email address.",$jsonResponse->errors->email[0]);
     }
 
     /** @test */
