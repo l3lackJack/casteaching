@@ -7,7 +7,7 @@ export default {
     name: "VideoShowLink",
     props: {
         video: {
-           type: Object,
+            type: Object,
             required: true
         }
     }

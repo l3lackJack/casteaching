@@ -3,19 +3,18 @@
 </template>
 
 <script>
-import bus from "../bus";
-
+import bus from '../bus'
 export default {
     name: "VideoEditLink",
     props: {
         video: {
-           type: Object,
+            type: Object,
             required: true
         }
     },
-    methods:{
-        edit(){
-            bus.$emit('edit',this.video);
+    methods: {
+        edit() {
+            bus.$emit('edit',this.video)
         }
     }
 }

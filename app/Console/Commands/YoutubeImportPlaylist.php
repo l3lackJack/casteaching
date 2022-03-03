@@ -8,7 +8,9 @@ use App\Models\User;
 use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Http\File;
 use Illuminate\Http\FileHelpers;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class YoutubeImportPlaylist extends Command

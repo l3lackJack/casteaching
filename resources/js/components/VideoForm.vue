@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="md:mt-0 md:col-span-2">
-                    <form data-qa="form_video_create" @submit.prevent="save" method="post">
+                    <form data-qa="form_video_create" @submit.prevent="save" method="POST" >
                         <div class="shadow sm:rounded-md sm:overflow-hidden md:bg-white">
                             <div class="px-4 py-5 space-y-6 sm:p-6">
 
@@ -54,6 +54,7 @@
                                 </div>
 
 
+
                             </div>
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                 <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -70,56 +71,54 @@
 </template>
 
 <script>
-import bus from "../bus.js";
+import bus from '../bus.js'
 export default {
     name: "VideoForm",
-    data(){
-        return{
-            video:{
-            },
-            status: 'creating'
-
-        }
+    data() {
+      return {
+          video: {},
+          status: 'creating'
+      }
     },
-    methods:{
-        save(){
-            if (this.status==='creating'){
+    methods: {
+        save() {
+            if (this.status ==='creating') {
                 this.store()
             }
-            if (this.status==='editing'){
+            if (this.status ==='editing') {
                 this.update()
             }
 
         },
-        store(){
+        store() {
             try {
-                window.api.video.create({
+                window.casteaching.video.create({
                     title: this.video.title,
                     description: this.video.description,
-                    url: this.video.url,
-                });
-                bus.$emit('created');
-                bus.$emit('status','Video Created Successfully');
-            }catch (error){
-                console.log(error)
+                    url: this.video.url
+                })
+                bus.$emit('created')
+                bus.$emit('status','Video created successfully')
+            } catch (error) {
+                console.log(error);
             }
         },
-        update(){
+        update() {
             try {
-                window.api.video.update(this.video.id,{
+                window.casteaching.video.update(this.video.id , {
                     title: this.video.title,
                     description: this.video.description,
-                    url: this.video.url,
-                });
-                bus.$emit('updated');
-                bus.$emit('status','Video updated Successfully');
-            }catch (error){
-                console.log(error)
+                    url: this.video.url
+                })
+                bus.$emit('created')
+                bus.$emit('status','Video updated successfully')
+            } catch (error) {
+                console.log(error);
             }
         }
     },
-    created() {
-        bus.$on('edit',() =>{
+    created () {
+        bus.$on('edit',(video) => {
             this.video = video
             this.status = 'editing'
         })

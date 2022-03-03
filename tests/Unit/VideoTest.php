@@ -7,8 +7,8 @@ use App\Models\Video;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use Illuminate\Support\Facades\Hash;
+use Tests\TestCase;
 
 /**
  * @covers Video::class
@@ -58,19 +58,19 @@ class VideoTest extends TestCase
     public function video_have_serie()
     {
         $video = Video::create([
-             'title'=>'TDD 101',
-            'description'=>'Bla bla bla',
-            'url' => 'https://youtu.be/w8j07_DBl_I'
+            'title' => 'TDD 101',
+            'description' => 'Bla bla bla',
+            'url' => 'https://youtu.be/w8j07_DBl_I',
         ]);
         $this->assertNull($video->serie);
 
         $serie = Serie::create([
-            'title'=>'Apren TDD',
-            'description'=>'Bla bla bla',
-            'image'=>'tdd.png',
-            'teacher_name'=>'Sergi Tur Badenas',
-            'teacher_photo_url'=>'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
-            ]);
+            'title' => 'Apren TDD',
+            'description' => 'Bla bla bla',
+            'image' => 'tdd.png',
+            'teacher_name' => 'Sergi Tur Badenas',
+            'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com'),
+        ]);
 
         $video->setSerie($serie);
 

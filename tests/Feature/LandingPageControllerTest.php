@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 /**
- * @covers LandingPageController::class;
+ * @covers LandingPageController::class
  */
 class LandingPageControllerTest extends TestCase
 {

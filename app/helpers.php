@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Serie;
+use Illuminate\Http\File;
 use App\Models\Team;
 use App\Models\User;
 use App\Models\Video;
@@ -51,6 +52,34 @@ if (! function_exists('create_regular_user')) {
 
         add_personal_team($user);
 
+        return $user;
+    }
+}
+
+if (! function_exists('create_series_manager_user')) {
+    function create_series_manager_user() {
+        $user = User::create([
+            'name' => 'SeriesManager',
+            'email' => 'seriesmanager@casteaching.com',
+            'password' => Hash::make('12345678')
+        ]);
+
+        Permission::create(['name' => 'series_manage_index']);
+        Permission::create(['name' => 'series_manage_show']);
+        Permission::create(['name' => 'series_manage_create']);
+        Permission::create(['name' => 'series_manage_store']);
+        Permission::create(['name' => 'series_manage_edit']);
+        Permission::create(['name' => 'series_manage_update']);
+        Permission::create(['name' => 'series_manage_destroy']);
+        $user->givePermissionTo('series_manage_index');
+        $user->givePermissionTo('series_manage_show');
+        $user->givePermissionTo('series_manage_create');
+        $user->givePermissionTo('series_manage_store');
+        $user->givePermissionTo('series_manage_destroy');
+        $user->givePermissionTo('series_manage_edit');
+        $user->givePermissionTo('series_manage_update');
+
+        add_personal_team($user);
         return $user;
     }
 }
@@ -292,37 +321,39 @@ if (! function_exists('objectify')) {
     {
         return new DomainObject($array);
     }
-    if (! function_exists('create_sample_series')) {
-        function create_sample_series()
-        {
-            $serie1 = Serie::create([
-                'title' => 'TDD (Test Driven Development)',
-                'description' => 'Bla bla bla',
-                'image' => 'tdd.png',
-                'teacher_name' => 'Sergi Tur Badenas',
-                'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
-            ]);
+}
 
-            sleep(1);
-            $serie2 = Serie::create([
-                'title' => 'Crud amb Vue i Laravel',
-                'description' => 'Bla bla bla',
-                'image' => 'crud_amb_vue_laravel.png',
-                'teacher_name' => 'Sergi Tur Badenas',
-                'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
-            ]);
+if (! function_exists('create_sample_series')) {
+    function create_sample_series()
+    {
+        $serie1 = Serie::create([
+            'title' => 'TDD (Test Driven Development)',
+            'description' => 'Bla bla bla',
+            'image' => 'tdd.png',
+            'teacher_name' => 'Sergi Tur Badenas',
+            'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
+        ]);
 
-            sleep(1);
+        sleep(1);
+        $serie2 = Serie::create([
+            'title' => 'Crud amb Vue i Laravel',
+            'description' => 'Bla bla bla',
+            'image' => 'crud_amb_vue_laravel.png',
+            'teacher_name' => 'Sergi Tur Badenas',
+            'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
+        ]);
 
-            $serie3 = Serie::create([
-                'title' => 'ionic Real world',
-                'description' => 'Bla bla bla',
-                'image' => 'ionic_real_world.png',
-                'teacher_name' => 'Sergi Tur Badenas',
-                'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
-            ]);
+        sleep(1);
 
-            return [$serie1,$serie2,$serie3];
-        }
+        $serie3 = Serie::create([
+            'title' => 'ionic Real world',
+            'description' => 'Bla bla bla',
+            'image' => 'ionic_real_world.png',
+            'teacher_name' => 'Sergi Tur Badenas',
+            'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
+        ]);
+
+        return [$serie1,$serie2,$serie3];
     }
 }
+

@@ -38,8 +38,7 @@
                                 <div class="flex-shrink-0">
                                     <a href="#">
                                         <span class="sr-only">{{ $serie->teacher_name }}</span>
-                                        <img class="h-10 w-10 rounded-full" src="{{ $serie->teacher_photo_url }}"
-                                             alt="">
+                                        <img class="h-10 w-10 rounded-full" src="{{ $serie->teacher_photo_url }}" alt="">
                                     </a>
                                 </div>
                                 <div class="ml-3">
