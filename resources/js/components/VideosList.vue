@@ -75,7 +75,7 @@ export default
         }
     },
     async created() {
-        this.getVideos();
+         this.getVideos();
       bus.$on('created',()=>{
           this.refresh();
       });
@@ -85,10 +85,10 @@ export default
     },
     methods:{
         async getVideos(){
-            this.videos = await window.api.videos();
+            this.videos = await window.casteaching.videos();
         },
     async refresh(){
-        this.getVideos();
+         this.getVideos();
     }
     }
 }
