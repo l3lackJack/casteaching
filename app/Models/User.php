@@ -87,6 +87,7 @@ class User extends Authenticatable
         $video->save();
         return $this;
     }
+
     public static function createUserFromGithub($githubUser)
     {
         $user = User::where('github_id', $githubUser->id)->first();
@@ -118,7 +119,6 @@ class User extends Authenticatable
                     'github_token' => $githubUser->token,
                     'github_refresh_token' => $githubUser->refreshToken,
                 ]);
-                add_personal_team($user);
             }
         }
 

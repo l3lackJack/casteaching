@@ -4,8 +4,7 @@
 </template>
 
 <script>
-import bus from "../bus";
-
+import bus from '../bus'
 export default {
     name: "VideoDestroyLink",
     props: {
@@ -17,11 +16,11 @@ export default {
     methods: {
         async remove() {
             try {
-                await window.api.video.destroy(this.video.id)
-                this.$emit('removed');
-                bus.$emit('status','Video removed succesfully');
-            }catch (error){
-                console.log(error)
+                await window.casteaching.video.destroy(this.video.id)
+                this.$emit('removed')
+                bus.$emit('status','Video removed successfully')
+            } catch (error) {
+                console.log(error);
             }
         }
     }
@@ -29,4 +28,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

@@ -31,10 +31,9 @@ class VideosApiController extends Controller
     public function store(Request $request)
     {
         return Video::create([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'url'=>$request->url,
-
+            'title' => $request->title,
+            'description' => $request->description,
+            'url' => $request->url,
         ]);
 
     }
@@ -75,8 +74,8 @@ class VideosApiController extends Controller
      */
     public function destroy($id)
     {
-       $video = Video::findOrFail($id);
-       $video->delete();
-       return $video;
+        $video = Video::findOrFail($id);
+        $video->delete();
+        return $video;
     }
 }

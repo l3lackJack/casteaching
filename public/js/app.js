@@ -7807,12 +7807,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return window.api.video.destroy(_this.video.id);
+                return window.casteaching.video.destroy(_this.video.id);
 
               case 3:
                 _this.$emit('removed');
 
-                _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('status', 'Video removed succesfully');
+                _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('status', 'Video removed successfully');
                 _context.next = 10;
                 break;
 
@@ -7951,6 +7951,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "VideoForm",
@@ -7972,26 +7973,26 @@ __webpack_require__.r(__webpack_exports__);
     },
     store: function store() {
       try {
-        window.api.video.create({
+        window.casteaching.video.create({
           title: this.video.title,
           description: this.video.description,
           url: this.video.url
         });
         _bus_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('created');
-        _bus_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('status', 'Video Created Successfully');
+        _bus_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('status', 'Video created successfully');
       } catch (error) {
         console.log(error);
       }
     },
     update: function update() {
       try {
-        window.api.video.update(this.video.id, {
+        window.casteaching.video.update(this.video.id, {
           title: this.video.title,
           description: this.video.description,
           url: this.video.url
         });
-        _bus_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('updated');
-        _bus_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('status', 'Video updated Successfully');
+        _bus_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('created');
+        _bus_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('status', 'Video updated successfully');
       } catch (error) {
         console.log(error);
       }
@@ -8000,7 +8001,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    _bus_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('edit', function () {
+    _bus_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('edit', function (video) {
       _this.video = video;
       _this.status = 'editing';
     });
@@ -8049,16 +8050,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _bus_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../bus.js */ "./resources/js/bus.js");
-/* harmony import */ var _VideoShowLink__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VideoShowLink */ "./resources/js/components/VideoShowLink.vue");
-/* harmony import */ var _VideoEditLink__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VideoEditLink */ "./resources/js/components/VideoEditLink.vue");
-/* harmony import */ var _VideoDestroyLink__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VideoDestroyLink */ "./resources/js/components/VideoDestroyLink.vue");
+/* harmony import */ var _VideoShowLink__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VideoShowLink */ "./resources/js/components/VideoShowLink.vue");
+/* harmony import */ var _VideoEditLink__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VideoEditLink */ "./resources/js/components/VideoEditLink.vue");
+/* harmony import */ var _VideoDestroyLink__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VideoDestroyLink */ "./resources/js/components/VideoDestroyLink.vue");
+/* harmony import */ var _bus_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../bus.js */ "./resources/js/bus.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -8123,9 +8126,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "VideosList",
   components: {
-    'video-show-link': _VideoShowLink__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'video-edit-link': _VideoEditLink__WEBPACK_IMPORTED_MODULE_3__["default"],
-    'video-destroy-link': _VideoDestroyLink__WEBPACK_IMPORTED_MODULE_4__["default"]
+    'video-show-link': _VideoShowLink__WEBPACK_IMPORTED_MODULE_1__["default"],
+    'video-edit-link': _VideoEditLink__WEBPACK_IMPORTED_MODULE_2__["default"],
+    'video-destroy-link': _VideoDestroyLink__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -8142,10 +8145,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 0:
               _this.getVideos();
 
-              _bus_js__WEBPACK_IMPORTED_MODULE_1__["default"].$on('created', function () {
+              _bus_js__WEBPACK_IMPORTED_MODULE_4__["default"].$on('created', function () {
                 _this.refresh();
               });
-              _bus_js__WEBPACK_IMPORTED_MODULE_1__["default"].$on('updated', function () {
+              _bus_js__WEBPACK_IMPORTED_MODULE_4__["default"].$on('updated', function () {
                 _this.refresh();
               });
 
@@ -26955,7 +26958,7 @@ var render = function () {
           _c("div", { staticClass: "ml-3" }, [
             _c("p", { staticClass: "text-sm font-medium text-green-800" }, [
               _vm._v(
-                "\n               " + _vm._s(_vm.message) + "\n            "
+                "\n                " + _vm._s(_vm.message) + "\n            "
               ),
             ]),
           ]),
@@ -27125,7 +27128,7 @@ var render = function () {
                 _c(
                   "form",
                   {
-                    attrs: { "data-qa": "form_video_create", method: "post" },
+                    attrs: { "data-qa": "form_video_create", method: "POST" },
                     on: {
                       submit: function ($event) {
                         $event.preventDefault()
@@ -27493,7 +27496,9 @@ var render = function () {
                       "\n                    Videos\n                    "
                     ),
                     _c("button", { on: { click: _vm.refresh } }, [
-                      _vm._v("Refresh"),
+                      _vm._v(
+                        "\n                        refresh\n                    "
+                      ),
                     ]),
                   ]
                 ),
@@ -27583,7 +27588,11 @@ var render = function () {
                           _vm._v(" "),
                           _c("video-destroy-link", {
                             attrs: { video: video },
-                            on: { removed: _vm.refresh },
+                            on: {
+                              removed: function ($event) {
+                                return _vm.refresh()
+                              },
+                            },
                           }),
                         ],
                         1

@@ -9,12 +9,12 @@ class LandingPageController extends Controller
 {
     public static function testedBy()
     {
-      return LandingPageControllerTest::class;
+        return LandingPageControllerTest::class;
     }
 
     public function show()
     {
-     return view('welcome');
+        return view('welcome');
     }
 
 

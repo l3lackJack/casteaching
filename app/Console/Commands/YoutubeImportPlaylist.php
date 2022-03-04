@@ -8,7 +8,9 @@ use App\Models\User;
 use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Http\File;
 use Illuminate\Http\FileHelpers;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class YoutubeImportPlaylist extends Command
@@ -46,45 +48,47 @@ class YoutubeImportPlaylist extends Command
      */
     public function handle()
     {
-        $playlist = Youtube::getPlaylistById($this->argument('playlistId'));
-        $this->info('Serie name: ' . $playlist->snippet->title);
-        $this->info('Creating serie...');
 
-        $extension = pathinfo(storage_path(($playlist->snippet->thumbnails->maxres->url), PATHINFO_EXTENSION))['extension'];
-        $filename = Str::slug($playlist->snippet->title).'.'.$extension;
-        $path = 'app/public/series/' . $filename;
-        copy($playlist->snippet->thumbnails->maxres->url, storage_path($path));
+            $playlist = Youtube::getPlaylistById($this->argument('playlistId'));
+            $this->info('Serie name: ' . $playlist->snippet->title);
+            $this->info('Creating serie...');
 
 
-        $serie = Serie::create([
-            'title' => $playlist->snippet->title,
-            'description' => $playlist->snippet->description,
-            'image' => $filename,
-            'teacher_name' => 'Sergi Tur Badenas',
-            'teacher_photo_url' => 'https://www.gravatar.com/avatar/046889f49471fd40d105eb76b9d83bf6'
-        ]);
+            $extension = pathinfo(storage_path(($playlist->snippet->thumbnails->maxres->url), PATHINFO_EXTENSION))['extension'];
+            $filename = Str::slug($playlist->snippet->title).'.'.$extension;
+            $path = 'app/public/series/' . $filename;
+            copy($playlist->snippet->thumbnails->maxres->url, storage_path($path));
+            //            https://i.ytimg.com/vi/ednlsVl-NHA/maxresdefault.jpg
 
-        $items = Youtube::getPlaylistItemsByPlaylistId($this->argument('playlistId'));
-        $previous = null;
-        foreach ($items['results'] as $item) {
-            if ($item->snippet->title === 'Deleted video') {
-                continue;
-            }
-            $this->info($item->snippet->title);
-            $video = Video::create([
-                'title' => $item->snippet->title,
-                'description' => $item->snippet->description,
-                'url' => 'https://www.youtube.com/embed/' . $item->snippet->resourceId->videoId,
-                'published_at' => Carbon::now(),
-                'previous' => optional($previous)->id,
-                'user_id' => User::where(['email' => 'sergiturbadenas@gmail.com'])->first()->id,
-                'serie_id' => $serie->id
+            $serie = Serie::create([
+                'title' => $playlist->snippet->title,
+                'description' => $playlist->snippet->description,
+                'image' => $filename,
+                'teacher_name' => 'Sergi Tur Badenas',
+                'teacher_photo_url' => 'https://www.gravatar.com/avatar/046889f49471fd40d105eb76b9d83bf6'
             ]);
-            if ($previous) {
-                $previous->next = optional($video)->id;
-                $previous->save();
+
+            $items = Youtube::getPlaylistItemsByPlaylistId($this->argument('playlistId'));
+            $previous = null;
+            foreach ($items['results'] as $item) {
+                if ($item->snippet->title === 'Deleted video') {
+                    continue;
+                }
+                $this->info($item->snippet->title);
+                $video = Video::create([
+                    'title' => $item->snippet->title,
+                    'description' => $item->snippet->description,
+                    'url' => 'https://www.youtube.com/embed/' . $item->snippet->resourceId->videoId,
+                    'published_at' => Carbon::now(),
+                    'previous' => optional($previous)->id,
+                    'user_id' => User::where(['email' => 'sergiturbadenas@gmail.com'])->first()->id,
+                    'serie_id' => $serie->id
+                ]);
+                if ($previous) {
+                    $previous->next = optional($video)->id;
+                    $previous->save();
+                }
+                $previous = $video;
             }
-            $previous = $video;
-        }
     }
 }

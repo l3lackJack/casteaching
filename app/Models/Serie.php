@@ -9,6 +9,8 @@ use Tests\Unit\SerieTest;
 
 class Serie extends Model
 {
+    use HasFactory;
+
     public static function testedBy()
     {
         return SerieTest::class;

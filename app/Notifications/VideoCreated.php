@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use App\Models\Video;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -39,9 +40,9 @@ class VideoCreated extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line("S'ha creat el vídeo nou: " . $this->video->title . " .")
-            ->action('Veure el vídeo', url($this->video->url))
-            ->line('Gràcies per utilitzar la nostra aplicació');
+                    ->line("S'ha creat el vídeo nou: " . $this->video->title . " .")
+                    ->action('Veure el vídeo', url($this->video->url))
+                    ->line('Gràcies per utilitzar la nostra aplicació');
     }
 
     /**
