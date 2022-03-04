@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Serie;
-use Illuminate\Http\File;
 use App\Models\Team;
 use App\Models\User;
 use App\Models\Video;

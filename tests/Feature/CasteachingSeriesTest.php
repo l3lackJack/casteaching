@@ -6,7 +6,6 @@ use App\Models\Serie;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 /**
@@ -48,11 +47,14 @@ class CasteachingSeriesTest extends TestCase
             'created_at' => Carbon::now()->addSeconds(3)
         ]);
 
-        $view = $this->blade('<x-casteaching-Series/>');
-        $view->assertSeeInOrder([$serie3->title, $serie2->title, $serie1->title]);
-        $view->assertSeeInOrder([$serie3->description, $serie2->description, $serie1->description]);
-        $view->assertSeeInOrder([$serie3->teacher_name, $serie2->teacher_name, $serie1->teacher_name]);
-        $view->assertSeeInOrder([$serie3->image, $serie2->image, $serie1->image]);
-        $view->assertSeeInOrder([$serie3->teacher_photo_url, $serie2->teacher_photo_url, $serie1->teacher_photo_url]);
+        $view = $this->blade('<x-casteaching-series/>');
+
+
+        $view->assertSeeInOrder([$serie3->title,$serie2->title,$serie1->title]);
+        $view->assertSeeInOrder([$serie3->description,$serie2->description,$serie1->description]);
+        $view->assertSeeInOrder([$serie3->teacher_name,$serie2->teacher_name,$serie1->teacher_name]);
+        $view->assertSeeInOrder([$serie3->image,$serie2->image,$serie1->image]);
+        $view->assertSeeInOrder([$serie3->teacher_photo_url,$serie2->teacher_photo_url,$serie1->teacher_photo_url]);
+
     }
 }

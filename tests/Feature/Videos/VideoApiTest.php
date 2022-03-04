@@ -12,7 +12,6 @@ use Tests\TestCase;
 /**
  * @covers \App\Http\Controllers\VideosApiController::class
  */
-
 class VideoApiTest extends TestCase
 {
     use RefreshDatabase, CanLogin;
@@ -108,7 +107,7 @@ class VideoApiTest extends TestCase
         $response = $this->putJson('/api/videos/' . $video->id);
 
         $response
-            ->assertStatus(403);
+            ->assertStatus(401);
 
         $newVideo = Video::find($video->id);
 
@@ -118,9 +117,6 @@ class VideoApiTest extends TestCase
         $this->assertEquals($newVideo->url, $video->url);
 
     }
-
-
-    //DESTROY
     /** @test */
     public function regular_users_cannot_destroy_videos()
     {
@@ -134,7 +130,6 @@ class VideoApiTest extends TestCase
 
         $response
             ->assertStatus(403);
-        $this->assertNotNull(Video::find($video->id));
 
         $newVideo = Video::find($video->id);
 
@@ -156,11 +151,13 @@ class VideoApiTest extends TestCase
             ->assertStatus(404);
 
     }
+
     /** @test */
-    public function users_with_permission_can_destroy_videos()
+    public function user_with_permission_can_destroy_videos()
     {
         $this->loginAsVideoManager();
-        $video = Video::create([
+
+        $video  = Video::create([
             'title' => 'TDD 101',
             'description' => 'Bla bla bla',
             'url' => 'https://youtu.be/ednlsVl-NHA'
@@ -226,7 +223,6 @@ class VideoApiTest extends TestCase
             'description' => 'Bla bla bla',
             'url' => 'https://youtu.be/ednlsVl-NHA'
         ]);
-
 
         $response
             ->assertStatus(201)

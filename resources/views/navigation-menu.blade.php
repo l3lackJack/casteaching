@@ -20,7 +20,6 @@
                             {{ __('Videos') }}
                         </x-jet-nav-link>
                     @endcan
-
                     @can('videos_manage_index')
                         <x-jet-nav-link href="/vue/manage/videos" :active="request()->routeIs('manage.vue.videos')">
                             {{ __('Videos Vue') }}
@@ -266,7 +265,6 @@
                     </div>
                 </div>
         @endif
-
 
     </div>
 </nav>

@@ -3,8 +3,8 @@
 namespace Tests\Unit;
 
 use App\Models\Serie;
-use App\Models\Video;
 use App\Models\User;
+use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;

@@ -85,3 +85,4 @@ Route::get('/github_sponsors', function () {
 Route::get('/auth/redirect', [GithubAuthController::class,'redirect']);
 
 Route::get('/auth/callback', [GithubAuthController::class,'callback']);
+
