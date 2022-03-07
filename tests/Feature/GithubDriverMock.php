@@ -10,7 +10,6 @@ class GithubDriverMock
     const NICKNAME = "acacha";
     const AVATAR = "TODO";
     const EMAIL = "sergiturbadenas@gmail.com";
-//    const EMAIL = "sergiturbadenas@gmail.com";
     const TOKEN = "TOKEN_HERE";
     const REFRESH_TOKEN = null;
 
