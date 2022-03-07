@@ -111,7 +111,7 @@ class User extends Authenticatable
                 $user->save();
             } else {
                 $user = User::create([
-                    'name' => $githubUser->name,
+                    'name' => $githubUser->name || 'Github User',
                     'email' => $githubUser->email,
                     'password' => Hash::make(Str::random()),
                     'github_id' => $githubUser->id,
@@ -119,6 +119,7 @@ class User extends Authenticatable
                     'github_token' => $githubUser->token,
                     'github_refresh_token' => $githubUser->refreshToken,
                 ]);
+                add_personal_team($user);
             }
         }
 
