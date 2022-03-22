@@ -12,6 +12,7 @@ class VideosApiController extends Controller
     {
         return VideoApiTest::class;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +36,6 @@ class VideosApiController extends Controller
             'description' => $request->description,
             'url' => $request->url,
         ]);
-
     }
 
     /**

@@ -74,6 +74,30 @@ export default
     },
     data() {
         return {
+    //         [
+    //             {
+    //                 "id": 1,
+    //                 "title": "Vídeo 1",
+    //                 "description": "Bla bla bla",
+    //                 "url": "https://youtu.be/a-3kfT9hZk4",
+    //                 "published_at": null
+    //             },
+    //     {
+    //         "id": 2,
+    //         "title": "Vídeo 2",
+    //         "description": "Bla bla bla",
+    //         "url": "https://youtu.be/a-3kfT9hZk4",
+    //         "published_at": null
+    //     },
+    //     {
+    //         "id": 3,
+    //         "title": "Vídeo 3",
+    //         "description": "Bla bla bla",
+    //         "url": "https://youtu.be/a-3kfT9hZk4",
+    //         "published_at": null,},
+    //     {}
+    //
+    // ]
             videos: []
         }
     },

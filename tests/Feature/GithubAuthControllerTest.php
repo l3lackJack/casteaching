@@ -45,10 +45,13 @@ class GithubAuthControllerTest extends TestCase
         $this->assertNotNull($user);
         $this->assertEquals($user->name,GithubDriverMock::NAME);
         $this->assertEquals($user->email,GithubDriverMock::EMAIL);
+//        $this->assertTrue($user->email_verified_at);
         $this->assertNotNull($user->password);
+//        $this->assertNotNull($user->profile_photo_path);
         $this->assertNull($user->superadmin);
         $this->assertEquals($user->github_id,GithubDriverMock::ID);
         $this->assertEquals($user->github_nickname,GithubDriverMock::NICKNAME);
+//        $this->assertEquals($user->github_avatar,GithubDriverMock::AVATAR);
         $this->assertEquals($user->github_token,GithubDriverMock::TOKEN);
         $this->assertNull($user->github_refresh_token);
 
@@ -82,10 +85,13 @@ class GithubAuthControllerTest extends TestCase
 
         $this->assertNotNull($user);
         $this->assertEquals($user->name,GithubDriverMock::NAME);
+//        $this->assertTrue($user->email_verified_at);
         $this->assertNotNull($user->password);
+//        $this->assertNotNull($user->profile_photo_path);
         $this->assertNull($user->superadmin);
         $this->assertEquals($user->github_id,GithubDriverMock::ID);
         $this->assertEquals($user->github_nickname,GithubDriverMock::NICKNAME);
+//        $this->assertEquals($user->github_avatar,GithubDriverMock::AVATAR);
         $this->assertEquals($user->github_token,GithubDriverMock::TOKEN);
         $this->assertNull($user->github_refresh_token);
 
@@ -119,10 +125,13 @@ class GithubAuthControllerTest extends TestCase
         $this->assertNotNull($user);
         $this->assertEquals($user->name,GithubDriverMock::NAME);
         $this->assertEquals($user->email,GithubDriverMock::EMAIL);
+//        $this->assertTrue($user->email_verified_at);
         $this->assertNotNull($user->password);
+//        $this->assertNotNull($user->profile_photo_path);
         $this->assertNull($user->superadmin);
         $this->assertEquals($user->github_id,GithubDriverMock::ID);
         $this->assertEquals($user->github_nickname,GithubDriverMock::NICKNAME);
+//        $this->assertEquals($user->github_avatar,GithubDriverMock::AVATAR);
         $this->assertEquals($user->github_token,GithubDriverMock::TOKEN);
         $this->assertNull($user->github_refresh_token);
 

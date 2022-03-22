@@ -96,6 +96,9 @@ class VideoApiTest extends TestCase
         $this->assertEquals($newVideo['url'],$dbVideo->url);
 
     }
+
+    /** DESTROY */
+
     /** @test */
     public function guest_users_cannot_destroy_videos()
     {
@@ -260,12 +263,15 @@ class VideoApiTest extends TestCase
     /** @test */
     public function guest_users_can_show_published_videos()
     {
+//        $this->withoutExceptionHandling();
         $video  = Video::create([
             'title' => 'TDD 101',
             'description' => 'Bla bla bla',
             'url' => 'https://youtu.be/ednlsVl-NHA'
         ]);
 
+//        $response = $this->get('/api/videos/' . $video->id);
+//        $response = $this->json('GET','/api/videos/' . $video->id);
         $response = $this->getJson('/api/videos/' . $video->id);
 
         $response->assertStatus(200);
@@ -282,6 +288,8 @@ class VideoApiTest extends TestCase
 //                ->missing('password')
                 ->etc()
             );
+
+//        $response->assertJsonPath('title', $video->title);
     }
 
     /** @test */

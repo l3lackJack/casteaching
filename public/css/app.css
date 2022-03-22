@@ -352,7 +352,7 @@ ul {
  */
 
 html {
-  font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 1 */
+  font-family: Inter var, Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 1 */
   line-height: 1.5; /* 2 */
 }
 
@@ -456,7 +456,7 @@ button,
  * as it triggers the better focus styles even for links, which still use a dotted
  * outline in Firefox by default.
  */
- 
+
 :-moz-focusring {
 	outline: auto;
 }
@@ -523,14 +523,14 @@ samp {
  *    CSS Remedy, with `svg` added as well.
  *
  *    https://github.com/mozdevs/cssremedy/issues/14
- * 
+ *
  * 2. Add `vertical-align: middle` to align replaced elements more
  *    sensibly by default when overriding `display` by adding a
  *    utility like `inline`.
  *
  *    This can trigger a poorly considered linting error in some
  *    tools but is included by design.
- * 
+ *
  *    https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210
  */
 
@@ -1298,9 +1298,16 @@ select {
 .m-4 {
 	margin: 1rem;
 }
+.m-5 {
+	margin: 1.25rem;
+}
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
+}
+.-my-2 {
+	margin-top: -0.5rem;
+	margin-bottom: -0.5rem;
 }
 .-mx-1\.5 {
 	margin-left: -0.375rem;
@@ -1317,10 +1324,6 @@ select {
 .-my-1 {
 	margin-top: -0.25rem;
 	margin-bottom: -0.25rem;
-}
-.-my-2 {
-	margin-top: -0.5rem;
-	margin-bottom: -0.5rem;
 }
 .ml-3 {
 	margin-left: 0.75rem;
@@ -1349,6 +1352,9 @@ select {
 .mt-1 {
 	margin-top: 0.25rem;
 }
+.ml-2 {
+	margin-left: 0.5rem;
+}
 .mb-6 {
 	margin-bottom: 1.5rem;
 }
@@ -1366,9 +1372,6 @@ select {
 }
 .ml-1 {
 	margin-left: 0.25rem;
-}
-.ml-2 {
-	margin-left: 0.5rem;
 }
 .-mr-0\.5 {
 	margin-right: -0.125rem;
@@ -1394,11 +1397,11 @@ select {
 .-mt-px {
 	margin-top: -1px;
 }
-.ml-auto {
-	margin-left: auto;
-}
 .mb-1 {
 	margin-bottom: 0.25rem;
+}
+.ml-auto {
+	margin-left: auto;
 }
 .mt-12 {
 	margin-top: 3rem;
@@ -1592,9 +1595,6 @@ select {
 .grid-cols-3 {
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 }
-.flex-row {
-	flex-direction: row;
-}
 .flex-col {
 	flex-direction: column;
 }
@@ -1674,9 +1674,6 @@ select {
 .whitespace-nowrap {
 	white-space: nowrap;
 }
-.break-all {
-	word-break: break-all;
-}
 .rounded-md {
 	border-radius: 0.375rem;
 }
@@ -1726,14 +1723,17 @@ select {
 .border-b {
 	border-bottom-width: 1px;
 }
-.border-r-0 {
-	border-right-width: 0px;
-}
 .border-r {
 	border-right-width: 1px;
 }
+.border-r-0 {
+	border-right-width: 0px;
+}
 .border-t-2 {
 	border-top-width: 2px;
+}
+.border-l-0 {
+	border-left-width: 0px;
 }
 .border-gray-300 {
 	--tw-border-opacity: 1;
@@ -1845,6 +1845,9 @@ select {
 .p-1 {
 	padding: 0.25rem;
 }
+.p-5 {
+	padding: 1.25rem;
+}
 .px-4 {
 	padding-left: 1rem;
 	padding-right: 1rem;
@@ -1934,14 +1937,14 @@ select {
 .pt-8 {
 	padding-top: 2rem;
 }
-.pr-10 {
-	padding-right: 2.5rem;
-}
 .pt-16 {
 	padding-top: 4rem;
 }
 .pb-20 {
 	padding-bottom: 5rem;
+}
+.pr-10 {
+	padding-right: 2.5rem;
 }
 .text-left {
 	text-align: left;
@@ -1956,7 +1959,7 @@ select {
 	vertical-align: middle;
 }
 .font-sans {
-	font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	font-family: Inter var, Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 .font-mono {
 	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -2335,6 +2338,11 @@ select {
 	--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 	box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
+.focus\:ring-1:focus {
+	--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+	--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+	box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
 .focus\:ring-gray-300:focus {
 	--tw-ring-opacity: 1;
 	--tw-ring-color: rgba(209, 213, 219, var(--tw-ring-opacity));
@@ -2449,10 +2457,6 @@ select {
 		margin-left: 1.5rem;
 	}
 
-	.sm\:ml-0 {
-		margin-left: 0px;
-	}
-
 	.sm\:mt-4 {
 		margin-top: 1rem;
 	}
@@ -2471,10 +2475,6 @@ select {
 
 	.sm\:h-10 {
 		height: 2.5rem;
-	}
-
-	.sm\:h-20 {
-		height: 5rem;
 	}
 
 	.sm\:h-2\/3 {
@@ -2558,6 +2558,12 @@ select {
 		overflow: hidden;
 	}
 
+	.sm\:truncate {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
 	.sm\:rounded-lg {
 		border-radius: 0.5rem;
 	}
@@ -2613,10 +2619,6 @@ select {
 		text-align: left;
 	}
 
-	.sm\:text-right {
-		text-align: right;
-	}
-
 	.sm\:text-sm {
 		font-size: 0.875rem;
 		line-height: 1.25rem;
@@ -2625,6 +2627,11 @@ select {
 	.sm\:text-4xl {
 		font-size: 2.25rem;
 		line-height: 2.5rem;
+	}
+
+	.sm\:text-3xl {
+		font-size: 1.875rem;
+		line-height: 2.25rem;
 	}
 }
 @media (min-width: 768px) {

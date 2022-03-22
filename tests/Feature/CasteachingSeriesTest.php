@@ -12,7 +12,6 @@ use Tests\TestCase;
  * @covers CasteachingSeries::class
  *
  */
-
 class CasteachingSeriesTest extends TestCase
 {
     use RefreshDatabase;
@@ -20,6 +19,7 @@ class CasteachingSeriesTest extends TestCase
     /** @test */
     public function guest_users_can_see_published_series()
     {
+        // 1 Preparació
         $serie1 = Serie::create([
             'title' => 'TDD (Test Driven Development)',
             'description' => 'Bla bla bla',
@@ -47,8 +47,10 @@ class CasteachingSeriesTest extends TestCase
             'created_at' => Carbon::now()->addSeconds(3)
         ]);
 
+        // 2 Execució
         $view = $this->blade('<x-casteaching-series/>');
 
+        // 3 Comprovació
 
         $view->assertSeeInOrder([$serie3->title,$serie2->title,$serie1->title]);
         $view->assertSeeInOrder([$serie3->description,$serie2->description,$serie1->description]);

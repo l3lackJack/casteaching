@@ -26,6 +26,7 @@ class GithubAuthController extends Controller
         try {
             $githubUser = Socialite::driver('github')->user();
         } catch (\Exception $error) {
+            //Log::debug($error);
             return redirect('/login')->withErrors(['msg' => 'An Error occurred!' . $error->getMessage()]);
         }
 
