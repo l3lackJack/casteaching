@@ -25,8 +25,6 @@ class VideosManageVueControllerTest extends TestCase
 
         $response->assertViewMissing('videos');
 
-        // TODO -> Not working per la carrega asíncrona
-        // SSR? Explain
         foreach ($videos as $video) {
             $response->assertSee($video->id);
             $response->assertSee($video->title);

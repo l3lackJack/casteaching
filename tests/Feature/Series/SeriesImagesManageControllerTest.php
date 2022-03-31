@@ -30,7 +30,6 @@ class SeriesImagesManageControllerTest extends TestCase
 
         Storage::fake('public');
 
-        // URI ENDPOINT -> API -> FUNCTION
         $response = $this->put('/manage/series/' . $serie->id . '/image/',[
             'image' => $file = UploadedFile::fake()->image('serie.jpg'),
         ]);
