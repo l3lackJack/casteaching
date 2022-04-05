@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SeriesImageUpdated;
 use App\Models\Serie;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -25,6 +26,7 @@ class SeriesImagesManageController extends Controller
         $serie->save();
         session()->flash('status', __('Successfully updated'));
 
+        SeriesImageUpdated::dispatch($serie);
         return back()->withInput();
     }
 }
