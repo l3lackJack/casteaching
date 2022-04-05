@@ -324,11 +324,18 @@ if (! function_exists('objectify')) {
     }
 }
 
+
+if (! function_exists('create_placeholder_series_image')) {
+    function create_placeholder_series_image()
+    {
+        return Storage::disk('public')->putFileAs('series', new File(base_path('/series_photos/placeholder.png')),'placeholder.png');
+    }
+}
+
 if (! function_exists('create_sample_series')) {
     function create_sample_series()
     {
         $path = Storage::disk('public')->putFile('series', new File(base_path('series_photos/tdd.png')));
-
         $serie1 = Serie::create([
             'title' => 'TDD (Test Driven Development)',
             'description' => 'Bla bla bla',
@@ -337,9 +344,9 @@ if (! function_exists('create_sample_series')) {
             'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
         ]);
 
+        sleep(1);
         $path = Storage::disk('public')->putFile('series', new File(base_path('series_photos/crud_amb_vue_laravel.png')));
 
-        sleep(1);
         $serie2 = Serie::create([
             'title' => 'Crud amb Vue i Laravel',
             'description' => 'Bla bla bla',
@@ -349,7 +356,6 @@ if (! function_exists('create_sample_series')) {
         ]);
 
         sleep(1);
-
         $path = Storage::disk('public')->putFile('series', new File(base_path('series_photos/ionic_real_world.png')));
 
         $serie3 = Serie::create([
@@ -360,7 +366,14 @@ if (! function_exists('create_sample_series')) {
             'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
         ]);
 
-        return [$serie1,$serie2,$serie3];
+        sleep(1);
+
+        $serie4 = Serie::create([
+            'title' => 'Serie TODO',
+            'description' => 'Bla bla bla',
+        ]);
+
+        return [$serie1,$serie2,$serie3,$serie4];
     }
 }
 
