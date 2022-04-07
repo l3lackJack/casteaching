@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Events\SeriesImageUpdated;
 use App\Models\Serie;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Tests\Feature\Series\SeriesImagesManageControllerTest;
 
 class SeriesImagesManageController extends Controller
@@ -17,6 +16,7 @@ class SeriesImagesManageController extends Controller
 
     public function update(Request $request)
     {
+
         $request->validate([
 //            'image' => ['image',Rule::dimensions()->minHeight(400)->ratio(1.777777778)],
             'image' => ['image','dimensions:min_height=400,ratio=16/9'],
@@ -27,6 +27,7 @@ class SeriesImagesManageController extends Controller
         session()->flash('status', __('Successfully updated'));
 
         SeriesImageUpdated::dispatch($serie);
+
         return back()->withInput();
     }
 }

@@ -14,6 +14,7 @@ use Illuminate\Queue\SerializesModels;
 class SeriesImageUpdated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
     public Serie $serie;
 
     /**

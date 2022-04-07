@@ -32,12 +32,13 @@ class SeriesImagesManageControllerTest extends TestCase
 
         Storage::fake('public');
         Event::fake();
+
         // URI ENDPOINT -> API -> FUNCTION
         $response = $this->put('/manage/series/' . $serie->id . '/image/',[
             'image' => $file = UploadedFile::fake()->image('serie.jpg',960,540),
         ]);
 
-        Event::assertDispatched(SeriesImageUpdated::class, function ($event) use ($serie){
+        Event::assertDispatched(SeriesImageUpdated::class,function($event) use ($serie) {
             return !is_null($event->serie->image) && $serie->is($event->serie);
         });
 

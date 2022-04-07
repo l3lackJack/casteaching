@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Serie;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -18,7 +19,7 @@ class ProcessSeriesImage implements ShouldQueue
 
     public Serie $serie;
 
-    public function testedBy()
+    public static function testedBy()
     {
         return ProcessSeriesImageTest::class;
     }
@@ -31,6 +32,7 @@ class ProcessSeriesImage implements ShouldQueue
         $this->serie = $serie;
     }
 
+
     /**
      * Execute the job.
      *
@@ -38,9 +40,10 @@ class ProcessSeriesImage implements ShouldQueue
      */
     public function handle()
     {
+
         $imageContents = Storage::disk('public')->get($this->serie->image);
         $image = Image::make($imageContents);
-        $image-> resize(null,400, function ($constraint){
+        $image->resize(null,400,function ($constraint) {
             $constraint->aspectRatio();
         })->limitColors(255)->encode();
         Storage::disk('public')->put($this->serie->image, (string) $image);

@@ -12,13 +12,11 @@ use Tests\TestCase;
 /**
  * @covers ScheduleSeriesImageProcessing::class
  */
-
 class ScheduleSeriesImageProcessingTest extends TestCase
 {
-    Use DatabaseMigrations;
-    /**
-     * @test
-     */
+    use DatabaseMigrations;
+
+    /** @test */
     public function it_not_queues_a_job_to_process_series_image_if_image_not_exists()
     {
         Queue::fake();
@@ -27,12 +25,11 @@ class ScheduleSeriesImageProcessingTest extends TestCase
             'description' => 'Bla bla bla'
         ]);
         SeriesImageUpdated::dispatch($serie);
-        Queue::assertNotPushed(ProcessSeriesImage::class);
-        }
 
-    /**
-     * @test
-     */
+        Queue::assertNotPushed(ProcessSeriesImage::class);
+    }
+
+    /** @test */
     public function it_queues_a_job_to_process_series_image()
     {
         Queue::fake();
@@ -42,8 +39,10 @@ class ScheduleSeriesImageProcessingTest extends TestCase
             'image' => 'series/placeholder.png'
         ]);
         SeriesImageUpdated::dispatch($serie);
-        Queue::assertPushed(ProcessSeriesImage::class,function ($job) use($serie){
+
+        Queue::assertPushed(ProcessSeriesImage::class,function($job) use ($serie) {
             return $serie->is($job->serie);
         });
     }
+
 }

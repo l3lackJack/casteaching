@@ -26,7 +26,7 @@ class ScheduleSeriesImageProcessing
      */
     public function handle($event)
     {
-        if($event->serie->image){
+        if ($event->serie->image) {
             ProcessSeriesImage::dispatch($event->serie);
         }
     }
