@@ -208,7 +208,10 @@
                     </div>
                 </div>
                 <div class="flex-1">
-                    @include('videos.show_main')
+                    @if($video->only_for_subscribers)
+                        @include('videos.show_main')
+                    @else
+                    @endif
                 </div>
             </div>
     </div>
