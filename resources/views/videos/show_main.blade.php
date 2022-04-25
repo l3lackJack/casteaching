@@ -10,5 +10,4 @@
     </iframe>
 
     @include('videos.show_main_title_and_description')
-
 </div>

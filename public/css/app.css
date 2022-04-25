@@ -1496,8 +1496,8 @@ select {
 .h-0 {
 	height: 0px;
 }
-.h-5\/6 {
-	height: 83.333333%;
+.h-2\/6 {
+	height: 33.333333%;
 }
 .min-h-screen {
 	min-height: 100vh;
@@ -2837,9 +2837,9 @@ select {
 		line-height: 2.25rem;
 	}
 
-	.sm\:text-2xl {
-		font-size: 1.5rem;
-		line-height: 2rem;
+	.sm\:text-xl {
+		font-size: 1.25rem;
+		line-height: 1.75rem;
 	}
 
 	.sm\:text-6xl {
@@ -3632,8 +3632,8 @@ select {
 		margin-bottom: 1rem;
 	}
 
-	.lg\:mt-20 {
-		margin-top: 5rem;
+	.lg\:mt-14 {
+		margin-top: 3.5rem;
 	}
 
 	.lg\:mt-0 {
@@ -3737,17 +3737,17 @@ select {
 		padding-bottom: 7rem;
 	}
 
-	.lg\:pt-20 {
-		padding-top: 5rem;
+	.lg\:pt-8 {
+		padding-top: 2rem;
 	}
 
 	.lg\:pb-20 {
 		padding-bottom: 5rem;
 	}
 
-	.lg\:text-5xl {
-		font-size: 3rem;
-		line-height: 1;
+	.lg\:text-4xl {
+		font-size: 2.25rem;
+		line-height: 2.5rem;
 	}
 }
 @media (min-width: 1280px) {

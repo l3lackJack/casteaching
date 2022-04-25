@@ -22,17 +22,17 @@ class Video extends Model
 
     protected $dates = ['published_at'];
 
-    public function onlyForSubscribers(): Attribute
+    protected function onlyForSubscribers(): Attribute
     {
         return new Attribute(
-          get: fn($value) => !is_null($this->needs_subscription)
+            get: fn ($value) => (boolean) !is_null($this->needs_subscription)
         );
     }
 
     public function canBeDisplayed()
     {
-        if($this->only_for_subscribers){
-            if (Auth::check()) return false;
+        if ($this->only_for_subscribers) {
+            if(!Auth::check()) return false;
         }
         return true;
     }
