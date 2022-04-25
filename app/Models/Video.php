@@ -31,7 +31,7 @@ class Video extends Model
 
     public function canBeDisplayed()
     {
-        if($this->onlyForSubscribers()){
+        if($this->only_for_subscribers){
             if (Auth::check()) return false;
         }
         return true;

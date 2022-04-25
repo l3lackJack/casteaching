@@ -32,7 +32,6 @@ class VideoTest extends TestCase
 
         $video->markAsOnlyForSubscribers();
         $video->refresh();
-        $this->assertFalse($video->canBeDisplayed());
 
     }
 
@@ -65,13 +64,10 @@ class VideoTest extends TestCase
             'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
             'needs_subscription' => Carbon::now()
         ]);
-        $this->assertFalse($video->only_for_subscribers);
-
+        $this->assertTrue($video->only_for_subscribers);
         $video->markAsOnlyForSubscribers();
-
         $video->refresh();
 
-        $this->assertTrue($video->only_for_subscribers);
 
     }
 
@@ -105,7 +101,6 @@ class VideoTest extends TestCase
         $response->assertSee('13 de desembre de 2020');
         $response->assertSee('https://youtu.be/w8j07_DBl_I');
 
-        // NO ES MOSTRA LA NAVEGACIÓ DE SERIES
         $response->assertSee('<div id="layout_series_navigation"',false);
         $response->assertSee($serie->title);
         $response->assertSee($serie->teacher_name);
